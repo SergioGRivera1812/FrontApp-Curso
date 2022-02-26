@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Row, Col, Form, Button, Spinner, Container } from "react-bootstrap";
 import { values, size } from "lodash";
 import { toast, useToast } from "react-toastify";
-import { isEmailValid } from "../../utils/validations"
+import { isEmailValid } from "../../utils/validations";
+import { signUpApi } from "../../api/auth"
 
 import "./SignUpForm.scss";
 
@@ -34,7 +35,21 @@ export default function SignUpForm(props) {
                 toast.warning("La contraseña debe tener al menos 6 caracteres")
             } else {
                 setsignUpLoading(true);
-                toast.success("Registro completado :)")
+                signUpApi(formData).then(response => {
+                    if (response.code) {
+                        toast.warning(response.message);
+                    } else {
+                        toast.success("El registro ha sido correcto");
+                        setShowModal(false);
+                        setFormData(initialFormValue());
+                    }
+                })
+                    .catch(() => {
+                        toast.error("Error del serivdor, intentelo más tarde")
+                    })
+                    .finally(() => {
+                        setsignUpLoading(false);
+                    });
             }
 
         }
@@ -46,7 +61,7 @@ export default function SignUpForm(props) {
     };
 
     return (
-        <div classname="sign-up-form">
+        <div className="sign-up-form">
             <h2>Crea tu cuenta</h2>
             <Container>
                 <Form onSubmit={onSubmit} onChange={onChange}>
@@ -60,7 +75,7 @@ export default function SignUpForm(props) {
                                     type="text"
                                     placeholder='Nombre'
                                     name="nombre"
-                                    defaultvalue={formData.nombre}
+                                    defaultValue={formData.nombre}
 
                                 />
 
@@ -72,7 +87,7 @@ export default function SignUpForm(props) {
                                     type="text"
                                     placeholder='Apellidos'
                                     name="apellidos"
-                                    defaultvalue={formData.apellidos}
+                                    defaultValue={formData.apellidos}
 
                                 />
                             </Col>
@@ -84,7 +99,7 @@ export default function SignUpForm(props) {
                                 type="email"
                                 placeholder="Correo electronico"
                                 name="email"
-                                defaultvalue={formData.email}
+                                defaultValue={formData.email}
 
                             />
                         </Row>
@@ -99,7 +114,7 @@ export default function SignUpForm(props) {
                                     type="password"
                                     placeholder="Contraseña"
                                     name="password"
-                                    defaultvalue={formData.password}
+                                    defaultValue={formData.password}
                                 />
                             </Col>
 
@@ -110,7 +125,7 @@ export default function SignUpForm(props) {
                                     type="password"
                                     placeholder="Repetir contraseña"
                                     name="repeatPassword"
-                                    defaultvalue={formData.repeatPassword}
+                                    defaultValue={formData.repeatPassword}
                                 />
                             </Col>
 
@@ -119,7 +134,7 @@ export default function SignUpForm(props) {
                     </Form.Group>
                     <br />
                     <Button variant='primary' type="submit">
-                        {!signUpLoading ? "Registrarse" : <Spinner animtation="border" />}
+                        {!signUpLoading ? "Registrarse" : <Spinner animation="border" />}
 
                     </Button>
                 </Form>

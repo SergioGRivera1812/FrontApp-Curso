@@ -7,15 +7,15 @@ import "./BasicModal.scss";
 
 export default function BasicModal(props) {
     const { show, setShow, children } = props;
+
     return (
         <Modal
             className="basic-modal"
             show={show}
             onHide={() => setShow(false)}
             centered
-            size='lg'
+            size="lg"
         >
-
             <Modal.Header>
                 <Modal.Title>
                     <img src={LogoIconTec} alt="Gatos" />
