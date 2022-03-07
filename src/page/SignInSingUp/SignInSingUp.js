@@ -6,6 +6,7 @@ import BasicModal from '../../components/Modal/BasicModal/BasicModal';
 import LogoTec from "../../assets/png/icono tec.png";
 import LogoIconTec from "../../assets/png/banner.png";
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
+import SignInForm from '../../components/SignInForm';
 
 
 import "./SignInSingUp.scss";
@@ -75,7 +76,7 @@ function RightComponent(props) {
           Registrate</Button>
         <Button
           variant="outline-primary"
-          onClick={() => openModal(<h2>Login</h2>)}
+          onClick={() => openModal(<SignInForm />)}
         >
           Iniciar sesión</Button>
       </div>
