@@ -35,7 +35,7 @@ export default function SignInForm() {
     };
 
     return (
-        <div className="Sign-in-form">
+        <div className="sign-in-form">
             <h2>Entrar</h2>
             <Form onSubmit={onSubmit} onChange={onChange}>
                 <Form.Group>
