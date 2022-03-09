@@ -4,9 +4,11 @@ import { values, size } from "lodash";
 import { toast } from "react-toastify";
 import { isEmailValid } from '../../utils/validations';
 import "./SignInForm.scss";
+import { signInApi, setTokenApi } from "../../api/auth"
 
 
-export default function SignInForm() {
+export default function SignInForm(props) {
+    const { setRefreshCheckLogin } = props;
     const [formData, setFormData] = useState(initialFormValue());
     const [signInLoading, setSignInLoading] = useState(false);
 
@@ -25,7 +27,19 @@ export default function SignInForm() {
                 toast.warning("Email invalido")
             } else {
                 setSignInLoading(true)
-                toast.success("Información correcta")
+                signInApi(formData).then(response => {
+                    if(response.message) {
+                        toast.warning(response.message);
+                    } else {
+                        setTokenApi(response.token);
+                        setRefreshCheckLogin(true);
+                    }
+                }).catch(() => {
+                    toast.error("Error del servidor, intentelo mas tarde");
+                })
+                .finally(() => {
+                    setSignInLoading(false);
+                })
             }
         }
     };
