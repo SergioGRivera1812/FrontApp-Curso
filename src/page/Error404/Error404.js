@@ -1,12 +1,12 @@
-import React from 'react'
-import BasicLayout from '../../layout/BasicLayout'
+import React from "react";
+//import BasicLayout from '../../layout/BasicLayout'
 
-import "./Error404.scss"
+import "./Error404.scss";
 
 export default function Error404() {
   return (
-    <BasicLayout>
+    <div>
       <h2>Error404</h2>
-    </BasicLayout>
+    </div>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SignInSingUp from "./page/SignInSingUp";
 import { ToastContainer } from "react-toastify";
-import { Toast } from "bootstrap";
+//import { Toast } from "bootstrap";
 import { AuthContext } from "./utils/contexts"
 import { isUserLogedApi } from "./api/auth"
 import Routing from "./routes/Routing";

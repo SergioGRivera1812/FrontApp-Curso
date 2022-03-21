@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { map } from "lodash";
 import configRouting from "./configRouting";
 
@@ -8,9 +8,9 @@ export default function Routing() {
     <Router>
       <Routes>
         {map(configRouting, (route, index) => (
-          <Route key={index} path={route.path} exact={route.exact}>
+            <Route key={index} path={route.path} exact={route.exact}>
             <route.page />
-          </Route>
+            </Route>
         ))}
       </Routes>
     </Router>

@@ -1,14 +1,14 @@
-import React from 'react'
-import BasicLayout from '../../layout/BasicLayout'
+import React from "react";
+//import BasicLayout from '../../layout/BasicLayout'
 
-import "./Home.scss"
+import "./Home.scss";
 
 export default function Home() {
   return (
 
-    <BasicLayout>
+    <div>
       <h2>Estamos en HOME</h2>
-    </BasicLayout>
+    </div>
 
   );
 }
